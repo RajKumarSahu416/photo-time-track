@@ -11,6 +11,12 @@ import Login from "./pages/Login";
 import EmployeeDashboard from "./pages/EmployeeDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import AttendancePage from "./pages/AttendancePage";
+import LeaveRequestPage from "./pages/LeaveRequestPage";
+import PayrollPage from "./pages/PayrollPage";
+import AdminEmployeesPage from "./pages/AdminEmployeesPage";
+import AdminAttendancePage from "./pages/AdminAttendancePage";
+import AdminLeavePage from "./pages/AdminLeavePage";
+import AdminPayrollPage from "./pages/AdminPayrollPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -46,6 +52,22 @@ const App = () => (
                 </RouteGuard>
               } 
             />
+            <Route 
+              path="/leave" 
+              element={
+                <RouteGuard requiredRole="employee">
+                  <LeaveRequestPage />
+                </RouteGuard>
+              } 
+            />
+            <Route 
+              path="/payroll" 
+              element={
+                <RouteGuard requiredRole="employee">
+                  <PayrollPage />
+                </RouteGuard>
+              } 
+            />
             
             {/* Admin Routes */}
             <Route 
@@ -53,6 +75,38 @@ const App = () => (
               element={
                 <RouteGuard requiredRole="admin">
                   <AdminDashboard />
+                </RouteGuard>
+              } 
+            />
+            <Route 
+              path="/admin/employees" 
+              element={
+                <RouteGuard requiredRole="admin">
+                  <AdminEmployeesPage />
+                </RouteGuard>
+              } 
+            />
+            <Route 
+              path="/admin/attendance" 
+              element={
+                <RouteGuard requiredRole="admin">
+                  <AdminAttendancePage />
+                </RouteGuard>
+              } 
+            />
+            <Route 
+              path="/admin/leave" 
+              element={
+                <RouteGuard requiredRole="admin">
+                  <AdminLeavePage />
+                </RouteGuard>
+              } 
+            />
+            <Route 
+              path="/admin/payroll" 
+              element={
+                <RouteGuard requiredRole="admin">
+                  <AdminPayrollPage />
                 </RouteGuard>
               } 
             />

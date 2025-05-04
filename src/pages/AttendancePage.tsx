@@ -48,10 +48,13 @@ const AttendancePage: React.FC = () => {
         } = {};
         
         records.forEach(record => {
+          const checkIn = record.checkInTime ? format(new Date(record.checkInTime), "h:mm a") : undefined;
+          const checkOut = record.checkOutTime ? format(new Date(record.checkOutTime), "h:mm a") : undefined;
+          
           dataMap[record.date] = {
             status: record.status,
-            checkIn: record.checkInTime ? format(new Date(record.checkInTime), "h:mm a") : undefined,
-            checkOut: record.checkOutTime ? format(new Date(record.checkOutTime), "h:mm a") : undefined,
+            checkIn,
+            checkOut,
           };
         });
         
