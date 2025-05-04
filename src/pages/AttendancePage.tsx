@@ -7,6 +7,7 @@ import DashboardLayout from "@/components/layout/DashboardLayout";
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { DayProps } from "react-day-picker";
 
 // Status color mapping
 const statusColors: Record<AttendanceStatus, { bg: string; text: string }> = {
@@ -65,8 +66,8 @@ const AttendancePage: React.FC = () => {
     loadAttendanceData();
   }, [user?.id, selectedMonth]);
 
-  // Custom day content component
-  const AttendanceDayContent = (props: { date: Date; activeModifiers: any }) => {
+  // Custom day content component - updated to match DayProps
+  const AttendanceDayContent = (props: DayProps) => {
     const dateStr = format(props.date, "yyyy-MM-dd");
     const attendance = attendanceData[dateStr];
     const isToday = isSameDay(props.date, new Date());
