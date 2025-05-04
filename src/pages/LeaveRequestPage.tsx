@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { format } from "date-fns";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import { useAuth } from "@/contexts/AuthContext";
-import { mockDataServices } from "@/services/mockData";
+import { mockDataServices, LeaveType } from "@/services/mockData";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -18,7 +18,7 @@ const LeaveRequestPage: React.FC = () => {
   const { toast } = useToast();
   const [startDate, setStartDate] = useState<Date | undefined>(new Date());
   const [endDate, setEndDate] = useState<Date | undefined>(new Date());
-  const [leaveType, setLeaveType] = useState<string>("sick");
+  const [leaveType, setLeaveType] = useState<LeaveType>("sick");
   const [reason, setReason] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   
@@ -158,7 +158,7 @@ const LeaveRequestPage: React.FC = () => {
                 <Label htmlFor="leaveType">Leave Type</Label>
                 <Select
                   value={leaveType}
-                  onValueChange={setLeaveType}
+                  onValueChange={(value) => setLeaveType(value as LeaveType)}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select leave type" />
